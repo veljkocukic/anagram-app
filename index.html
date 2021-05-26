@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+                *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family:"Arial";
+        }
+
+
+main{
+  margin-top:15px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:70vh;
+}
+input{
+  width:30%;
+  outline:none;
+  min-height:35px;
+  font-size:25px;
+}
+#firstAnagram{
+  margin-bottom:30px;
+}
+label{
+  width:30%;
+  font-size:1.5em;
+}
+button{
+  font-size:22px;
+  margin-top:5px;
+  width:160px;
+  height:40px;
+}
+h1,h2{
+  text-align:center;
+}
+h2{
+  margin-bottom:20px;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<main>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+    <h2>Anagram Checker</h2>
+        <label for="firstAnagram">Enter the first word:</label>
+        <input type="text" name="firstAnagram" id="firstAnagram">
+        
+        
+        <label for="secondAnagram">Enter the second word:</label>
+        <input type="text" name="secondAnagram" id="secondAnagram">
+          <button>CHECK!</button>
+        </main>
+        
+        <h1></h1>
+        <script>
+let firstInput = document.getElementById("firstAnagram");
+let secondInput = document.getElementById("secondAnagram");
+let button = document.querySelector("button");
+let text = document.querySelector("h1");
+let trueFalse;
+console.clear();
+
+button.addEventListener("click", () => {
+  const firstLowerCase = firstInput.value.toLowerCase();
+  const secondLowerCase = secondInput.value.toLowerCase();
+  if (firstInput.value.length > 0 && secondInput.value.length > 0) {
+    if (firstLowerCase.length === secondLowerCase.length) {
+      console.log(firstLowerCase.length === secondLowerCase.length,firstLowerCase.length,secondLowerCase.length)  
+      let firstWord = firstLowerCase.split("");
+      let secondWord = secondLowerCase.split("");
+      trueFalse = firstWord.every((char) => {
+        if (secondWord.indexOf(char) > -1) {
+          return true;
+        }return false;
+        
+      });
+    } else {
+      trueFalse = false;  
+      text.innerText = "Words are not anagrams";
+    }
+    trueFalse
+      ? (text.innerText = "The words are anagrams!")
+      : (text.innerText = "The words aren't anagrams!");
+  } else {
+    text.innerText = "Please enter the words into the fields above";
+  }
+});
+
+        </script>
+</body>
+</html>
